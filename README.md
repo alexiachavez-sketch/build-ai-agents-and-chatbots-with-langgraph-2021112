@@ -7,3 +7,5 @@ Welcome to the **ELECTRICONIT** Customer Service Chatbot repository! This projec
 ## 🛠️ Architecture Overview
 
 The system routes incoming customer inquiries through a **Router / Supervisor** node powered by an **Intent Classifier**. Based on the classified intent, queries are directed to specialized agents or the off-topic fallback handler. Conversation history is continuously synchronized using **MemorySaver**.
+
+![Customer Support Architecture Diagram](Customer%20Support%20Architecture%20Diagram.png)
