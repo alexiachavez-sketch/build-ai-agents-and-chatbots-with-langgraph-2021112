@@ -10,7 +10,7 @@ ELECTRONIT is an AI customer service chatbot built using LangGraph and LangChain
 - **QA / Tester:** Test conversations & output capture
 - **Brandon Le & Alexia Chavez:** Presenter / Editor (Slides, README & Video)
 
-Main Project Deliverable: ELECTRONIT_Multi_Agent_Chatbot.ipynb
+**Main Project Deliverable:** ELECTRONIT_Multi_Agent_Chatbot.ipynb
 
 ## System Architecture
 ![Architecture Diagram](./Customer%20Support%20Architecture%20Diagram.png)
