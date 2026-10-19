@@ -1,35 +1,66 @@
-# ⚡ ELECTRONIT – Agentic AI Customer Support System
+# ELECTRONIT - Multi-Agent Customer Service Chatbot
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-Framework-1C3C3C?style=for-the-badge)
-![LangGraph](https://img.shields.io/badge/LangGraph-Multi--Agent-FF6F61?style=for-the-badge)
+## Project Overview
+ELECTRONIT is an AI customer service chatbot built using LangGraph and LangChain. It uses an intentional supervisor/router architecture to classify customer intent and seamlessly direct queries to three specialized agents, backed by persistent thread memory (`MemorySaver`).
 
-An agentic multi-agent AI customer service assistant built with **LangGraph** and **LangChain** for **ELECTRONIT**, an online electronics retailer.
+## Team Members & Responsibilities
+- **Eseta:** Project Coordinator (Timeline, rubric checklist)
+- **Tanvi:** Dev 1 (Environment setup & API integration)
+- **Andres:** Dev 2 (Agents, Router, Memory implementation)
+- **QA / Tester:** Test conversations & output capture
+- **Brandon Le & Alexia Chavez:** Presenter / Editor (Slides, README & Video)
 
----
+## System Architecture
+![Architecture Diagram](./Customer%20Support%20Architecture%20Diagram.png)
 
-## 📐 Architecture Overview
+### The Three Agents
+1. **Order Status Agent:** Uses the `lookup_order_status` tool to fetch shipping dates and order status by ID.
+2. **Refund/Return Policy Agent:** Provides accurate return window rules, restocking fees, and instructions.
+3. **Product Recommendation Agent:** Uses the `get_product_catalog` tool to suggest laptops based on budget and user needs.
+## Test Results & Memory Proof
 
-The system routes incoming customer queries through a **Router / Supervisor** node powered by an **Intent Classifier**. Based on the query, it delegates tasks to specialized agents, maintains session history via **MemorySaver**, and handles out-of-scope inquiries with a polite fallback handler.
+```text
+============================================================
+TEST 1: MULTI-TURN CONVERSATION WITH MEMORY & AGENT SWITCHING
+============================================================
 
-![Customer Support Architecture Diagram](Customer%20Support%20Architecture%20Diagram.png)
+[Thread: customer-001] 👤 USER: Hi, I want to check order ORD-1001.
+[Thread: customer-001] 🤖 BOT:  Your order ORD-1001 for the AlphaBook Pro has been shipped. The expected delivery date is October 22, 2026. If you need further assistance, just let me know!
 
-### 🤖 Specialized Agents & Tools
-* **Router / Supervisor:** Classifies customer intent and routes the query to the correct handler.
-* **Order Status Agent:** Queries order databases to provide live tracking, shipping, and delivery status.
-* **Refund / Return Policy Agent:** Reads store policy documents to evaluate return eligibility, deadlines, and exchange rules.
-* **Product Recommendation Agent:** Searches the electronics catalog to compare specs and suggest items based on budget and user needs.
-* **Fallback Handler:** Gracefully redirects off-topic questions back to ELECTRONIT support capabilities.
-* **MemorySaver:** Synchronizes multi-turn conversation context across all agents.
+[Thread: customer-001] 👤 USER: When will it arrive?
+[Thread: customer-001] 🤖 BOT:  Your order ORD-1001 for the AlphaBook Pro is expected to arrive on October 22, 2026. If you have any more questions, feel free to ask!
 
----
+[Thread: customer-001] 👤 USER: Can I return it if I don't like it?
+[Thread: customer-001] 🤖 BOT:  Yes, you can return the item within 30 days of delivery if you don't like it. Please note that opened items will incur a 15% restocking fee unless the item is defective. If you need assistance with the return process, let me know!
 
-## 🚀 Quickstart
+============================================================
+TEST 2: INDIVIDUAL AGENTS & EDGE CASES
+============================================================
 
-### 1. Prerequisites & Environment
-```bash
-git clone [https://github.com/your-username/electronit-chatbot.git](https://github.com/your-username/electronit-chatbot.git)
-cd electronit-chatbot
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+[Thread: customer-002] 👤 USER: I need a laptop for high-end video editing and 3D rendering. What do you recommend?
+[Thread: customer-002] 🤖 BOT:  For high-end video editing and 3D rendering, I recommend the **SpectraBook S**. It features an Intel Core i9 processor, 64GB of RAM, and a 2TB SSD, making it a powerful workstation suitable for demanding tasks. 
+
+If you're looking for a slightly lower price point, the **OmegaPro G17** with a Ryzen 9 5900HX, 32GB RAM, and 1TB SSD is also a solid choice, especially for gaming and creative work.
+
+Let me know if you need more information on either option!
+
+[Thread: customer-003] 👤 USER: Can you give me status on order ORD-9999?
+[Thread: customer-003] 🤖 BOT:  I couldn't find any information for order ID 'ORD-9999'. Please double-check the order ID and try again. If you need further assistance, feel free to ask!
+
+[Thread: customer-004] 👤 USER: Who won the last Super Bowl?
+[Thread: customer-004] 🤖 BOT:  I’m sorry, but I can only assist with questions about orders, returns, refunds, and product recommendations at ELECTRONIT. Is there anything related to our store I can assist with?
+
+[Thread: customer-005] 👤 USER: I need help with something.
+[Thread: customer-005] 🤖 BOT:  I’m sorry, but I can only assist with questions about orders, returns, refunds, and product recommendations at ELECTRONIT. Is there anything related to our store I can assist with?
+
+============================================================
+TEST 3: MEMORY ISOLATION PROOF
+============================================================
+
+[Thread: customer-002-isolated] 👤 USER: When will my order arrive?
+[Thread: customer-002-isolated] 🤖 BOT:  Could you please provide me with your order ID so I can check the status and delivery details for you?
+
+## Setup & API Key Instructions
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/alexiachavez-sketch/build-ai-agents-and-chatbots-with-langgraph-2021112.git](https://github.com/alexiachavez-sketch/build-ai-agents-and-chatbots-with-langgraph-2021112.git)
