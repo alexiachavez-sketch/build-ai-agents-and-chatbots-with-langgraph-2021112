@@ -7,10 +7,10 @@ ELECTRONIT is an AI customer service chatbot built using LangGraph and LangChain
 
 ## Team Members & Responsibilities
 - **Eseta:** Project Coordinator (Timeline, rubric checklist)
-- **Tanvi:** Dev 1 (Environment setup & API integration)
-- **Andres:** Dev 2 (Agents, Router, Memory implementation)
+- **Alexia Chavez:** Dev 1 (Environment setup & API integration)
+- **Brandon Le:** Dev 2 (Agents, Router, Memory implementation)
 - **QA / Tester:** Test conversations & output capture
-- **Brandon Le & Alexia Chavez:** Presenter / Editor (Slides, README & Video)
+- **Andres Gomez & Tanvi:** Dev 1 (Environment setup & API integration)Presenter / Editor (Slides, README & Video)
 
 
 ## System Architecture
